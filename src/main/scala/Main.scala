@@ -30,13 +30,20 @@ object Logarithms {
   }
 }
 
-object Me {
-  opaque type Identifier = String
-  object Identifier {
-    def apply(v: String): Identifier = v
-  }
+case class Label(v: String)
+object Sandbox {
 
-  given IdentifierOps: {
-    def (x: Identifier) toCharList : List[Char] = x.toString.iterator
+  val first = Label("first")
+  val second = Label("second")
+  
+  // List(first, second)
+  // (first, second)
+}
+
+object MyContext {
+  private case class Inside(v: Int)
+  opaque type Outside = Inside
+  object Outside {
+    def apply(v: Int): Outside= Inside(v)
   }
 }
