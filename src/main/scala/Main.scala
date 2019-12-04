@@ -29,3 +29,14 @@ object Logarithms {
     def (x: Logarithm) * (y: Logarithm): Logarithm = Logarithm(x + y)
   }
 }
+
+object Me {
+  opaque type Identifier = String
+  object Identifier {
+    def apply(v: String): Identifier = v
+  }
+
+  given IdentifierOps: {
+    def (x: Identifier) toCharList : List[Char] = x.toString.iterator
+  }
+}
